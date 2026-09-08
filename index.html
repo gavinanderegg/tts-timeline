@@ -14,7 +14,9 @@
         <p>Created on September 7, 2026.</p>
     </section>
 
-    <div id="chart"></div>
+    <div id="chart-scroll">
+        <div id="chart"></div>
+    </div>
 
     <div id="episode-card" class="card detail-box" hidden>
         <button type="button" class="card-close" aria-label="Close">&times;</button>
@@ -46,8 +48,15 @@
         }
     }
 
+    #chart-scroll {
+        width: 100%;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+    }
+
     #chart {
         width: 100%;
+        min-width: 800px;
         touch-action: manipulation;
     }
 

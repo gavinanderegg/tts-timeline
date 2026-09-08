@@ -25,6 +25,7 @@ const BOX_GAP = 14;
 const BOX_EDGE = 8;
 
 const container = document.getElementById('chart');
+const scroller = document.getElementById('chart-scroll');
 
 fetch('./episodes.json')
     .then((response) => response.json())
@@ -163,17 +164,19 @@ function positionCard(pageX, pageY) {
 function positionTooltip(point, size) {
     const boxWidth = size.contentSize[0];
     const boxHeight = size.contentSize[1];
-    const containerWidth = size.viewSize[0];
 
     // The container is as tall as the whole page, so the bottom of the visible
     // area has to come from the window rather than from viewSize.
     const viewportBottom = window.scrollY + document.documentElement.clientHeight;
 
+    const visibleLeft = scroller.scrollLeft;
+    const visibleRight = scroller.scrollLeft + scroller.clientWidth;
+
     let x = point[0] + BOX_GAP;
-    if (x + boxWidth > containerWidth - BOX_EDGE) {
+    if (x + boxWidth > visibleRight - BOX_EDGE) {
         x = point[0] - boxWidth - BOX_GAP;
     }
-    x = Math.max(BOX_EDGE, x);
+    x = Math.max(visibleLeft + BOX_EDGE, x);
 
     let y = point[1] + BOX_GAP;
     if (y + boxHeight > viewportBottom - BOX_EDGE) {
