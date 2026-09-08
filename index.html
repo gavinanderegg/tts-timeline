@@ -48,6 +48,13 @@
 
     #chart {
         width: 100%;
+        touch-action: manipulation;
+    }
+
+    @media (pointer: coarse) {
+        body {
+            cursor: pointer;
+        }
     }
 
     .detail-box {

@@ -78,7 +78,7 @@ function start(episodes) {
 const card = document.getElementById('episode-card');
 const cardBody = card.querySelector('.card-body');
 
-let clickOpenedCard = false;
+let lastChartClick = 0;
 let chartInstance = null;
 
 function setupCard(chart, byDate) {
@@ -89,15 +89,14 @@ function setupCard(chart, byDate) {
         if (!dayEpisodes) {
             return;
         }
-        clickOpenedCard = true;
+        lastChartClick = Date.now();
         showCard(dayEpisodes, params.event.event);
     });
 
     card.querySelector('.card-close').addEventListener('click', hideCard);
 
     document.addEventListener('click', (event) => {
-        if (clickOpenedCard) {
-            clickOpenedCard = false;
+        if (Date.now() - lastChartClick < 500) {
             return;
         }
         if (!card.contains(event.target)) {
@@ -119,12 +118,18 @@ function showCard(dayEpisodes, nativeEvent) {
     card.style.top = '0px';
     card.hidden = false;
 
-    positionCard(
-        nativeEvent.clientX + window.scrollX,
-        nativeEvent.clientY + window.scrollY
-    );
+    const point = eventPoint(nativeEvent);
+    positionCard(point.x + window.scrollX, point.y + window.scrollY);
 
     setTooltipEnabled(false);
+}
+
+function eventPoint(nativeEvent) {
+    const touches = nativeEvent.changedTouches || nativeEvent.touches;
+    if (touches && touches.length > 0) {
+        return { x: touches[0].clientX, y: touches[0].clientY };
+    }
+    return { x: nativeEvent.clientX, y: nativeEvent.clientY };
 }
 
 function positionCard(pageX, pageY) {
