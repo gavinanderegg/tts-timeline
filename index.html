@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./echarts.min.js"></script>
+    <title>The Talk Show Timeline — A chart by Gavin Anderegg</title>
+    <meta name="author" content="Gavin Anderegg">
+</head>
+
+<body>
+    <section class="description">
+        <h1>The Talk Show Timeline</h1>
+        <p>Created on September 7, 2026.</p>
+    </section>
+
+    <div id="chart"></div>
+
+    <div id="episode-card" class="card detail-box" hidden>
+        <button type="button" class="card-close" aria-label="Close">&times;</button>
+        <div class="card-body"></div>
+    </div>
+</body>
+
+<style>
+    * {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        width: 100%;
+        min-height: 100%;
+        background: #222;
+        overflow-x: hidden;
+    }
+
+    section.description {
+        color: #EEE;
+        padding: 24px 32px;
+
+        p {
+            padding-top: 0.8em;
+        }
+    }
+
+    #chart {
+        width: 100%;
+    }
+
+    .detail-box {
+        width: 340px;
+        max-width: calc(100vw - 32px);
+        padding: 14px 16px 16px;
+        background: #1a1a1a;
+        border: 1px solid #3d3d3d;
+        border-radius: 6px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+        color: #e8e8e8;
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .card {
+        position: absolute;
+        z-index: 10;
+    }
+
+    .card[hidden] {
+        display: none;
+    }
+
+    .card-close {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        padding: 4px 6px;
+        background: none;
+        border: 0;
+        color: #8a8a8a;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .card-close:hover {
+        color: #e8e8e8;
+    }
+
+    .card-date {
+        margin-bottom: 8px;
+        padding-right: 20px;
+        color: #8a8a8a;
+        font-size: 11px;
+        line-height: 1.3;
+    }
+
+    .card-title {
+        margin-bottom: 5px;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 1.35;
+    }
+
+    .card-title a {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        font: inherit;
+        color: #8ad8f0;
+    }
+
+    .card-title a:hover,
+    .card-title a:focus {
+        text-decoration: underline;
+    }
+
+    .card-description {
+        color: #bdbdbd;
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .card-separator {
+        margin: 12px 0;
+        border-top: 1px solid #3d3d3d;
+    }
+</style>
+<script src="https://tinylytics.app/embed/ymKy7embDzqpj9NARJqA.js" defer></script>
+<script src="./main.js"></script>
+</html>
