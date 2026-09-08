@@ -133,8 +133,8 @@ def parse_episodes(source):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "input", nargs="?", default="shows.html",
-        help="HTML file to parse (default: shows.html)",
+        "input", nargs="?", default="shows.txt",
+        help="File to parse (default: shows.txt)",
     )
     parser.add_argument(
         "-o", "--output", default="episodes.json",
